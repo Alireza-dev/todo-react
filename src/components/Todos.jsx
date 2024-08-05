@@ -11,8 +11,32 @@ export default function Todos({items}) {
         {
             title: 'go to gym at 17:00',
             status: false
-        }
+        },
     ])
+
+    const handleKeyDown = (event) => {
+
+        if (event.key === 'Enter') {
+
+            if (event.target.value != '') {
+
+                setTodos(
+                    [
+                        ...todos,
+                        {
+                            title: event.target.value,
+                            status: false
+                        }
+                    ]
+                )
+
+                event.target.value = ''
+
+            }
+
+        }
+
+    }
 
     return (
         <div className="flex items-center justify-center h-screen">
@@ -21,7 +45,7 @@ export default function Todos({items}) {
                     <h1 className="mr-6 text-4xl font-bold text-purple-600"> TO DO APP</h1>
                 </div>
                 <div className="relative">
-                    <input type="text" placeholder="What needs to be done today?" className="w-full px-2 py-3 border rounded outline-none border-grey-600" />
+                    <input type="text" placeholder="What needs to be done today?" className="w-full px-2 py-3 border rounded outline-none border-grey-600" onKeyDown={handleKeyDown} />
                 </div>
                 <TodoList todos={todos} />
             </div>
