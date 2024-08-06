@@ -17,7 +17,7 @@ export default function Todos({items}) {
         },
     ])
 
-    const handleKeyDown = (event) => {
+    const addNewTodoHandler = (event) => {
 
         if (event.key === 'Enter') {
 
@@ -42,6 +42,16 @@ export default function Todos({items}) {
 
     }
 
+    const deleteTodoHandler = (todo) => {
+        console.log('delete todo ', todo);
+
+        let newTodos = todos.filter( (todoItem) => {
+            return todo.id != todoItem.id;
+        })
+
+        setTodos(newTodos)
+    }
+
     return (
         <div className="flex items-center justify-center h-screen">
             <div className="w-full px-4 py-8 mx-auto shadow lg:w-1/3  bg-white">
@@ -49,9 +59,9 @@ export default function Todos({items}) {
                     <h1 className="mr-6 text-4xl font-bold text-purple-600"> TO DO APP</h1>
                 </div>
                 <div className="relative">
-                    <input type="text" placeholder="What needs to be done today?" className="w-full px-2 py-3 border rounded outline-none border-grey-600" onKeyDown={handleKeyDown} />
+                    <input type="text" placeholder="What needs to be done today?" className="w-full px-2 py-3 border rounded outline-none border-grey-600" onKeyDown={addNewTodoHandler} />
                 </div>
-                <TodoList todos={todos} />
+                <TodoList todos={todos} deleteTodo={deleteTodoHandler} />
             </div>
         </div>
     );

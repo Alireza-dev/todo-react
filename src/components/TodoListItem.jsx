@@ -2,7 +2,7 @@ import EditIcon from "./icons/EditIcon";
 import DeleteIcon from "./icons/DeleteIcon";
 
 
-export default function TodoListItem({todo}) {
+export default function TodoListItem({todo, deleteTodo}) {
 
 
     return (
@@ -13,7 +13,7 @@ export default function TodoListItem({todo}) {
                 </div>
                 <button type="button" className="absolute right-0 flex items-center space-x-1">
                     <EditIcon />   
-                    <DeleteIcon onClick={() => console.log(todo)} />                 
+                    <DeleteIcon onClick={() => deleteTodo(todo)} />                 
                 </button>
             </li>
 
