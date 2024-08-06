@@ -52,15 +52,17 @@ export default function Todos({items}) {
         setTodos(newTodos)
     }
 
-    const changeTodoItemStatusHandler = (todo) => {
+    const toggleTodoStatusHandler = (todo) => {
 
-        let newTodos = todos.filter((todoItem) => {
-            return todo.id == todoItem.id;
+        let newTodos = todos.map((todoItem) => {
+            if (todo.id === todoItem.id) {
+                todoItem.status = ! todoItem.status
+            }
+
+            return todoItem;
         })
 
-        newTodos[0].status ? newTodos[0].status = false : newTodos[0].status = true;
-
-        setTodos([...todos])
+        setTodos(newTodos)
     }
 
     return (
@@ -72,7 +74,7 @@ export default function Todos({items}) {
                 <div className="relative">
                     <input type="text" placeholder="What needs to be done today?" className="w-full px-2 py-3 border rounded outline-none border-grey-600" onKeyDown={addNewTodoHandler} />
                 </div>
-                <TodoList todos={todos} deleteTodo={deleteTodoHandler} changeTodoStatus={changeTodoItemStatusHandler} />
+                <TodoList todos={todos} deleteTodo={deleteTodoHandler} toggleTodoStatus={toggleTodoStatusHandler} />
             </div>
         </div>
     );
