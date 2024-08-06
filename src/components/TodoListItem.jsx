@@ -3,20 +3,24 @@ import DeleteIcon from "./icons/DeleteIcon";
 import { useState } from "react";
 
 
-export default function TodoListItem({todo, deleteTodo, toggleTodoStatus}) {
+export default function TodoListItem({todo, deleteTodo, toggleTodoStatus, editTodoTitle}) {
     const [ editMode, setEditMode ] = useState(false)
+
+    const editTodoHandler = (event) => {
+        if (event.key === 'Enter') {
+            editTodoTitle(todo, event.target.value)
+            setEditMode(false)
+        }
+    }
 
     return (
             <li className="relative flex items-center justify-between px-2 py-6 border-b">
-                
-                
-                
 
                 {
                     editMode
                     ?
                         <div className="w-full flex items-center">
-                            <input type="text" value={todo?.title} onChange={()=> {}} className="w-full px-4 py-2 border border-gray-200 rounded" />
+                            <input type="text" defaultValue={todo?.title} onChange={()=> {}} onKeyDown={editTodoHandler} className="w-full px-4 py-2 border border-gray-200 rounded" />
                             <DeleteIcon className="ml-2" onClick={() => setEditMode(false)} />                 
                         </div>
                     

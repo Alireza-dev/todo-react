@@ -65,6 +65,19 @@ export default function Todos({items}) {
         setTodos(newTodos)
     }
 
+    const editTodoTitleHandler = (todo, newTitleValue) => {
+
+        let newTodos = todos.map((todoItem) => {
+            if (todo.id === todoItem.id) {
+                todoItem.title = newTitleValue
+            }
+
+            return todoItem;
+        })
+
+        setTodos(newTodos)
+    }
+
     return (
         <div className="flex items-center justify-center h-screen">
             <div className="w-full px-4 py-8 mx-auto shadow lg:w-1/3  bg-white">
@@ -74,7 +87,7 @@ export default function Todos({items}) {
                 <div className="relative">
                     <input type="text" placeholder="What needs to be done today?" className="w-full px-2 py-3 border rounded outline-none border-grey-600" onKeyDown={addNewTodoHandler} />
                 </div>
-                <TodoList todos={todos} deleteTodo={deleteTodoHandler} toggleTodoStatus={toggleTodoStatusHandler} />
+                <TodoList todos={todos} deleteTodo={deleteTodoHandler} toggleTodoStatus={toggleTodoStatusHandler} editTodoTitle={editTodoTitleHandler}  />
             </div>
         </div>
     );
