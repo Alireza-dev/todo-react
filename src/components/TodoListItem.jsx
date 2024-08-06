@@ -13,7 +13,7 @@ export default function TodoListItem({todo}) {
                 </div>
                 <button type="button" className="absolute right-0 flex items-center space-x-1">
                     <EditIcon />   
-                    <DeleteIcon />                 
+                    <DeleteIcon onClick={() => console.log(todo)} />                 
                 </button>
             </li>
 

@@ -1,14 +1,17 @@
 import { useState } from "react";
 import TodoList from "./TodoList";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Todos({items}) {
 
     let [ todos, setTodos ] = useState([
         {
+            id: uuidv4(),
             title: 'go to school and read books',
             status: true
         },
         {
+            id: uuidv4(),
             title: 'go to gym at 17:00',
             status: false
         },
@@ -24,6 +27,7 @@ export default function Todos({items}) {
                     [
                         ...todos,
                         {
+                            id: uuidv4(),
                             title: event.target.value,
                             status: false
                         }
